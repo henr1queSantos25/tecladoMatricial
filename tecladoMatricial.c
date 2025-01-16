@@ -23,14 +23,78 @@ void buzzer_on(uint buzzer_pin, float frequency, uint duration_ms) {
         sleep_us((int)(half_period * 1e6)); // Espera pelo meio período
     }
 }
+// Definição do teclado
+uint columns[4] = {4, 3, 2, 1}; 
+uint rows[4] = {8, 7, 6, 5};
 
+char KEY_MAP[16] = {
+    '1', '2', '3', 'A',
+    '4', '5', '6', 'B',
+    '7', '8', '9', 'C',
+    '*', '0', '#', 'D'
+};
+
+uint all_columns_mask = 0x0;
+uint column_mask[4];
+
+// Função que inicializa o teclado
+void pico_keypad_init(void) {
+    for (int i = 0; i < 4; i++) {
+        gpio_init(columns[i]);
+        gpio_pull_up(columns[i]);  
+        gpio_set_dir(columns[i], GPIO_IN);
+        all_columns_mask |= (1 << columns[i]);
+        column_mask[i] = (1 << columns[i]);
+
+        gpio_init(rows[i]);
+        gpio_set_dir(rows[i], GPIO_OUT);
+        gpio_put(rows[i], 1);
+    }
+}
+
+// Função que capta as teclas digitadas 
+char pico_keypad_get_key(void) {
+    for (int row = 0; row < 4; row++) {
+        gpio_put(rows[row], 0);  
+        busy_wait_us(100);  
+        
+        uint32_t cols = gpio_get_all() & all_columns_mask;
+        
+        gpio_put(rows[row], 1);  
+        
+        if (cols != all_columns_mask) {
+            for (int col = 0; col < 4; col++) {
+                if ((cols & column_mask[col]) == 0) {
+                    return KEY_MAP[row * 4 + col];
+                }
+            }
+        }
+    }
+    return 0;  
+}
 
 int main()
 {
+    stdio_init_all();
+    pico_keypad_init();
+    char last_key = 0; 
+    // Buzzer fora do while para fins de teste do teclado - sujeito a alteração - toca apenas uma vez
     init_buzzer(21, 13);
-    while (true) {
+    
         buzzer_on(21, 440, 250);
-
         sleep_ms(1000);
+    
+    while (true) {
+        
+        // Teste do teclado - sujeito a alterações - imprime as teclas digitadas
+        char caracter_press = pico_keypad_get_key();
+        if (caracter_press && caracter_press != last_key) {  
+            last_key = caracter_press;
+            printf("\nTecla pressionada: %c\n", caracter_press);
+
+        } else if (!caracter_press) {
+            last_key = 0;  
+        }
+        
     }
 }
