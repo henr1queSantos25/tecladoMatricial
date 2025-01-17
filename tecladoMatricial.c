@@ -96,20 +96,21 @@ int main()
     while (true) {
         
         // Teste do teclado - sujeito a alterações - imprime as teclas digitadas
-        char caracter_press = pico_keypad_get_key();
-            if (caracter_press == '#' || caracter_press == '*' && caracter_press != last_key) {  
+    char caracter_press = pico_keypad_get_key();
+        if (caracter_press == '#' || caracter_press == '*' && caracter_press != last_key) {  
+    last_key = caracter_press;
+    printf("\nTecla pressionada: %c\n", caracter_press);
+    buzzer_on(21,440,250);
+    sleep_ms(1000);
+    } 
+    else if (!caracter_press) {
+        last_key = 0;  
+    }
+    if (caracter_press && caracter_press != last_key) {  
         last_key = caracter_press;
         printf("\nTecla pressionada: %c\n", caracter_press);
-         buzzer_on(21,440,250);
-        sleep_ms(1000);
     } else if (!caracter_press) {
         last_key = 0;  
     }
-
-        if (caracter_press && caracter_press != last_key) {  
-            last_key = caracter_press;
-            printf("\nTecla pressionada: %c\n", caracter_press);
-        } else if (!caracter_press) {
-            last_key = 0;  
-    }
+}
 }
