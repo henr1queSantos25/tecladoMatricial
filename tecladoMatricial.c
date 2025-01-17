@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 
-
 //Função responsável por inicializar o pino do buzzer 
 void init_buzzer(uint pin_buzzer, uint botao){
     gpio_init(pin_buzzer); 
@@ -70,8 +69,22 @@ char pico_keypad_get_key(void) {
             }
         }
     }
+    
     return 0;  
 }
+
+// void ledOn(char key) {
+//     if (key >= '0' && key <= '9') {
+//         gpio_put(?, true); 
+//         sleep_ms(?);
+//         gpio_put(?, false);  
+//     } 
+//     else if (key >= 'A' && key <= 'D') {
+//         gpio_put(?, true);  
+//         sleep_ms(?);
+//         gpio_put(?, false);    
+//     }
+// }
 
 int main()
 {
@@ -80,21 +93,23 @@ int main()
     char last_key = 0; 
     // Buzzer fora do while para fins de teste do teclado - sujeito a alteração - toca apenas uma vez
     init_buzzer(21, 13);
-    
-        buzzer_on(21, 440, 250);
-        sleep_ms(1000);
-    
     while (true) {
         
         // Teste do teclado - sujeito a alterações - imprime as teclas digitadas
         char caracter_press = pico_keypad_get_key();
+            if (caracter_press == '#' || caracter_press == '*' && caracter_press != last_key) {  
+        last_key = caracter_press;
+        printf("\nTecla pressionada: %c\n", caracter_press);
+         buzzer_on(21,440,250);
+        sleep_ms(1000);
+    } else if (!caracter_press) {
+        last_key = 0;  
+    }
+
         if (caracter_press && caracter_press != last_key) {  
             last_key = caracter_press;
             printf("\nTecla pressionada: %c\n", caracter_press);
-
         } else if (!caracter_press) {
             last_key = 0;  
-        }
-        
     }
 }
