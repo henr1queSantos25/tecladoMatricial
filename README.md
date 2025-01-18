@@ -3,7 +3,7 @@
 Este repositório contém o código e a documentação e video da **Atividade 1 Controle de pinos GPIO com o
 emprego de um teclado matricial**. Amplamente utilizados em sistemas embarcados e aplicações como automação, interfaces homem-máquina e dispositivos eletrônicos.
 ## 📹 video do Projeto
-- **[Ver Video]()**
+- **[Ver Video](https://drive.google.com/file/d/1cnQETIMx6UbuKRw7zj2zeR4Z1mioxkMB/view?usp=sharing)**
 
 ## 🎯 Objetivo
 
@@ -70,4 +70,4 @@ Para outras plataformas, consulte as instruções no diretório docs/.
 - **[Nicassio Santos.](https://github.com/nicassiosantos)**
 - **[Everton Espedito.](https://github.com/EvertonEspedito)**
 - **[MarcusVMFF.](https://github.com/MarcusVMFF)**
-
+- **[João Pasip.](https://github.com/joao-pasip)**
