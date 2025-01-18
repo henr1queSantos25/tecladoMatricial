@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+// VERMELHO PORTA 12
+
+// constantes de escopo amplo
+const uint LED_PIN_RED = 12;
+const uint LED_PIN_BLUE = 13;
+const uint LED_PIN_GREEN = 11;
 
 // Função responsável por inicializar o pino do buzzer
 void init_buzzer(uint pin_buzzer, uint botao)
@@ -96,6 +102,15 @@ char pico_keypad_get_key(void)
 
 int main()
 {
+    gpio_init(LED_PIN_RED);
+    gpio_set_dir(LED_PIN_RED, GPIO_OUT);
+
+    gpio_init(LED_PIN_BLUE);
+    gpio_set_dir(LED_PIN_BLUE, GPIO_OUT);
+
+    gpio_init(LED_PIN_GREEN);
+    gpio_set_dir(LED_PIN_GREEN, GPIO_OUT);
+
     stdio_init_all();
     pico_keypad_init();
     char last_key = 0;
@@ -112,6 +127,43 @@ int main()
             printf("\nTecla pressionada: %c\n", caracter_press);
             buzzer_on(21, 440, 250);
             sleep_ms(1000);
+        }
+        // Se a tecla A for pressionada, liga o LED vermelho
+        else if (caracter_press == 'A' && caracter_press != last_key)
+        {
+            last_key = caracter_press;
+            gpio_put(LED_PIN_RED, true);
+            sleep_ms(500);
+            gpio_put(LED_PIN_RED, false);
+        }
+        // Se a tecla B for pressionada, liga o LED azul
+        else if (caracter_press == 'B' && caracter_press != last_key)
+        {
+            last_key = caracter_press;
+            gpio_put(LED_PIN_BLUE, true);
+            sleep_ms(500);
+            gpio_put(LED_PIN_BLUE, false);
+        }
+        // Se a tecla C for pressionada, liga o LED verde
+        else if (caracter_press == 'C' && caracter_press != last_key)
+        {
+            last_key = caracter_press;
+            printf("\nTecla pressionada: %c\n", caracter_press);
+            gpio_put(LED_PIN_GREEN, true);
+            sleep_ms(500);
+            gpio_put(LED_PIN_GREEN, false);
+        }
+        // Se a tecla D for pressionada, liga todos os LEDs
+        else if (caracter_press == 'D' && caracter_press != last_key)
+        {
+            last_key = caracter_press;
+            gpio_put(LED_PIN_RED, true);    // Liga o LED vermelho
+            gpio_put(LED_PIN_BLUE, true);   // Liga o LED azul
+            gpio_put(LED_PIN_GREEN, true);  // Liga o LED verde
+            sleep_ms(500);                  // Mantém ligados por 500ms
+            gpio_put(LED_PIN_RED, false);   // Desliga o LED vermelho
+            gpio_put(LED_PIN_BLUE, false);  // Desliga o LED azul
+            gpio_put(LED_PIN_GREEN, false); // Desliga o LED verde
         }
         else if (!caracter_press)
         {
