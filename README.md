@@ -43,7 +43,7 @@ Um teclado matricial é composto por um arranjo de linhas e colunas que permite 
 2. Configure o hardware:
 -  Conecte o teclado matricial ao microcontrolador utilizando as portas GPIO.
 - Consulte o esquema de pinos da sua placa.
-- Faça a build e façã o upload do arquivo `.UF2` para o microcontrolador:
+- Faça a build e faça o upload do arquivo `.UF2` para o microcontrolador.
 
 - Caso esteja usando Arduino, abra o arquivo no IDE e carregue no dispositivo.
 Para outras plataformas, consulte as instruções no diretório docs/.
@@ -54,19 +54,21 @@ Para outras plataformas, consulte as instruções no diretório docs/.
 ## ✨ Funcionalidades
 
 - Detecção precisa de teclas pressionadas.
-- Suporte a diferentes tamanhos de teclado matricial (ex.: 4x4, 3x3).
+- Suporte a diferentes tamanhos de teclado matricial.
 - Facilidade de configuração com exemplos práticos.
 - Compatibilidade com diversos microcontroladores.
+- Toque do buzzer ao apertar `*` e `#`.
 ## 🔧 Exemplos Disponíveis
 - Leitura básica de teclas (4x4).
 - Implementação de senhas utilizando o teclado.
 - Controle de LEDs baseado em entradas do teclado.
-- Utilização de Buzzers.
+- Toque de Buzzers.
 
 
 ## 💡 Desenvolvido com dedicação por:
 - **[Henrique Santos.](https://github.com/henr1queSantos25)**
-- **[ericksonsmoura.](https://github.com/ericksonsmoura)**
-- **[nicassiosantos.](https://github.com/nicassiosantos)**
+- **[Erickson Moura.](https://github.com/ericksonsmoura)**
+- **[Nicassio Santos.](https://github.com/nicassiosantos)**
 - **[Everton Espedito.](https://github.com/EvertonEspedito)**
+- **[MarcusVMFF.](https://github.com/MarcusVMFF)**
 
