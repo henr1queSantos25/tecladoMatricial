@@ -54,7 +54,6 @@ Para outras plataformas, consulte as instruções no diretório docs/.
 ## ✨ Funcionalidades
 
 - Detecção precisa de teclas pressionadas.
-- Suporte a diferentes tamanhos de teclado matricial.
 - Facilidade de configuração com exemplos práticos.
 - Compatibilidade com diversos microcontroladores.
 - Toque do buzzer ao apertar `*` e `#`.
