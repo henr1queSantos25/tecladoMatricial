@@ -120,6 +120,7 @@ int main()
         else if (caracter_press == 'A' && caracter_press != last_key)
         {
             last_key = caracter_press;
+            printf("\nTecla pressionada: %c\n", caracter_press);
             gpio_put(LED_PIN_RED, true);
             sleep_ms(500);
             gpio_put(LED_PIN_RED, false);
@@ -128,6 +129,7 @@ int main()
         else if (caracter_press == 'B' && caracter_press != last_key)
         {
             last_key = caracter_press;
+            printf("\nTecla pressionada: %c\n", caracter_press);
             gpio_put(LED_PIN_BLUE, true);
             sleep_ms(500);
             gpio_put(LED_PIN_BLUE, false);
@@ -145,6 +147,7 @@ int main()
         else if (caracter_press == 'D' && caracter_press != last_key)
         {
             last_key = caracter_press;
+            printf("\nTecla pressionada: %c\n", caracter_press);
             gpio_put(LED_PIN_RED, true);    // Liga o LED vermelho
             gpio_put(LED_PIN_BLUE, true);   // Liga o LED azul
             gpio_put(LED_PIN_GREEN, true);  // Liga o LED verde
