@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-// VERMELHO PORTA 12
 
 // constantes de escopo amplo
 const uint LED_PIN_RED = 12;
@@ -30,6 +29,7 @@ void buzzer_on(uint buzzer_pin, float frequency, uint duration_ms)
         sleep_us((int)(half_period * 1e6)); // Espera pelo meio período
     }
 }
+
 // Definição do teclado
 uint columns[4] = {4, 3, 2, 1};
 uint rows[4] = {8, 7, 6, 5};
@@ -87,18 +87,6 @@ char pico_keypad_get_key(void)
     return 0;
 }
 
-// void ledOn(char key) {
-//     if (key >= '0' && key <= '9') {
-//         gpio_put(?, true);
-//         sleep_ms(?);
-//         gpio_put(?, false);
-//     }
-//     else if (key >= 'A' && key <= 'D') {
-//         gpio_put(?, true);
-//         sleep_ms(?);
-//         gpio_put(?, false);
-//     }
-// }
 
 int main()
 {
@@ -114,13 +102,13 @@ int main()
     stdio_init_all();
     pico_keypad_init();
     char last_key = 0;
-    // Buzzer fora do while para fins de teste do teclado - sujeito a alteração - toca apenas uma vez
+
     init_buzzer(21, 13);
     while (true)
     {
 
-        // Teste do teclado - sujeito a alterações - imprime as teclas digitadas
         char caracter_press = pico_keypad_get_key();
+        // Se a tecla '#' ou a tecla '*' for pressionada, aciona o buzzer
         if (caracter_press == '#' || caracter_press == '*' && caracter_press != last_key)
         {
             last_key = caracter_press;
