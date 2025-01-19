@@ -71,3 +71,4 @@ Para outras plataformas, consulte as instruções no diretório docs/.
 - **[Everton Espedito.](https://github.com/EvertonEspedito)**
 - **[MarcusVMFF.](https://github.com/MarcusVMFF)**
 - **[João Pasip.](https://github.com/joao-pasip)**
+- **[Osaná Thiago.](https://github.com/OsanaThiago)**
